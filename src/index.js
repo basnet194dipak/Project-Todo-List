@@ -1,41 +1,35 @@
-import { Project } from "./project";
-import { Project_list } from "./project_list";
+import {add_projects, delete_projects, add_todo, delete_todo, project_list} from "./util.js"
 
-let project_list = new Project_list();
+// three default projects 
+add_projects("Learn Odin project")
+add_projects("Learn Python")
+add_projects("Learn Machine Learning")
 
-// add project to project_list
-function add_projects(project_name) {
-  let project = new Project(project_name);
-  project_list.add_project(project);
-}
+console.log(project_list)
 
-function delete_projects(project_idx) {
-  project_list.delete_project(project_idx);
-}
+const form = document.getElementById("project-form");
 
-// add todo to project
-function add_todo(
-  project_idx,
-  title,
-  description,
-  dueDate,
-  priority,
-  notes,
-  checklist,
-) {
-  // access the project and add todo
-  project_list.project_list[project_idx].add_todo(
-    title,
-    description,
-    dueDate,
-    priority,
-    notes,
-    checklist,
-  );
-}
+form.addEventListener("submit", function (event) {
+    event.preventDefault();
 
-// delete todo to project
+    const projectName = document.getElementById("project-name").value;
 
-function delete_todo(project_idx, todo_idx) {
-  project_list.project_list[project_idx].delete_todo((id = todo_idx));
-}
+    console.log(projectName);
+
+    // adding project to the project list 
+    add_projects(projectName)
+});
+
+// display the project list
+let available_projects = document.querySelector("#available_projects")
+document.addEventListener("DOMContentLoaded",()=>{
+  for (let i = 0; i<project_list.project_list.length; i++)
+  {
+    let hello = document.createElement("div")
+    console.log(i)
+    let project = project_list.project_list[i] 
+    hello.innerText = `${project.name}`
+    available_projects.appendChild(hello)
+  }
+})
+

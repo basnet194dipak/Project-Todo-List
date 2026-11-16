@@ -26,7 +26,21 @@
                 </div>
             </div>
             <div id="create_project">
-                <h1> + New Project</h1>
+                <form  id="project-form" action="" method="POST">
+                    <label for="project-name"></label>
+                    <input
+                        type="text"
+                        name="project_name"
+                        id="project-name"
+                        placeholder="Enter project name..."
+                        required
+                    >
+
+                    <button type="submit">
+                        + New Project
+                    </button>
+                </form>
+                
             </div>
         </div>
 
@@ -35,7 +49,12 @@
         </div>
 
         <div id="view_all_projects">
-           <h2> View all projects</h2>
+            <div id="available_projects">
+                
+            </div>
+           <button>
+                <h2> View all projects</h2>
+           </button>
         </div>
     </div>
     <div id="right">
