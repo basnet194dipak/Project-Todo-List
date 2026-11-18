@@ -1,68 +1,58 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <div id="left">
-        <div id="creating_project">
-            <div class="titles">
-                <img src="" alt="Icons">
-                <div class="headings">
-                    <h1>Todo Manager</h1>
-                    <p>
-                        <ul>
-                            <li>Plan</li>
-                            <li>
-                                Organize
-                            </li>
-                            <li>
-                                Achieve
-                            </li>
-                        </ul>
-                    </p>
-                </div>
-            </div>
-            <div id="create_project">
-                <form  id="project-form" action="" method="POST">
-                    <label for="project-name"></label>
-                    <input
-                        type="text"
-                        name="project_name"
-                        id="project-name"
-                        placeholder="Enter project name..."
-                        required
-                    >
+      <div id="creating_project">
+        <div class="titles">
+          <img src="" alt="Icons" />
+          <div class="headings">
+            <h1>Todo Manager</h1>
 
-                    <button type="submit">
-                        + New Project
-                    </button>
-                </form>
-                
-            </div>
+            <ul>
+              <li>Plan</li>
+              <li>Organize</li>
+              <li>Achieve</li>
+            </ul>
+          </div>
         </div>
+        <div id="create_project">
+          <form id="project-form" action="" method="POST">
+            <label for="project-name"></label>
+            <input
+              type="text"
+              name="project_name"
+              id="project-name"
+              placeholder="Enter project name..."
+              required
+            />
 
-        <div id="available_projects">
-            
+            <button type="submit">+ New Project</button>
+          </form>
         </div>
-        
-        <div id="view_all_projects">
-           <button id="viewallprojects">
-                <h2> View all projects</h2>
-           </button>
-        </div>
+      </div>
+
+      <div id="available_projects"></div>
+
+      <div id="view_all_projects">
+        <button id="viewallprojects">
+          <h2>View all projects</h2>
+        </button>
+      </div>
     </div>
     <div id="right">
-        <section class="search"></section>
-        <section id="visuals">
-            <div id="todo">
-                <div id="control_section"></div>
-                <div id="view_sections"></div>
-            </div>
-            <div id="todo_details"></div>
-        </section>
+      <section class="search"></section>
+      <section id="visuals">
+        <div id="todo">
+          <div id="control_section"></div>
+          <div id="view_sections"></div>
+        </div>
+        <div id="todo_details"></div>
+      </section>
     </div>
-</body>
+  </body>
 </html>

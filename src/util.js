@@ -40,5 +40,4 @@ function delete_todo(project_idx, todo_idx) {
   project_list.project_list[project_idx].delete_todo((id = todo_idx));
 }
 
-
-export {add_projects, delete_projects, add_todo, delete_todo,project_list}
+export { add_projects, delete_projects, add_todo, delete_todo, project_list };
