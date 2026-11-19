@@ -1,18 +1,35 @@
-// webpack.config.js
 import path from "node:path";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 
 export default {
-    mode: "development",
-    entry: "./src/index.js",
-    output: {
-        filename: "main.js",
-        path: path.resolve(import.meta.dirname, "dist"),
-        clean: true,
-    },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: "./src/template.html",
-        }),
+  mode: "development",
+
+  entry: "./src/index.js",
+
+  output: {
+    filename: "main.js",
+    path: path.resolve(import.meta.dirname, "dist"),
+    clean: true,
+  },
+
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"],
+          },
+        },
+      },
     ],
+  },
+
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./src/template.html",
+    }),
+  ],
 };

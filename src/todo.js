@@ -86,5 +86,4 @@ class Todo {
     this.checklist = new_check_list;
   }
 }
-
 export { Todo };

@@ -13,25 +13,40 @@ add_projects("Learn Machine Learning");
 
 console.log(project_list);
 
-// display list of todo from projects
-function display_todo(i) {
-  let view = document.querySelector("#view_sections");
-  let projects = project_list.project_list[i];
+function display_todo(project_idx) {}
 
-  // to be completed in future
+function delete_project_ui(idx) {
+  delete_projects(idx);
+  re_display_ui();
 }
 
 function display_projects(n) {
-  let display_upto = project_list.project_list.length - n
+  let display_upto = project_list.project_list.length - n;
   let available_projects = document.querySelector("#available_projects");
+
   available_projects.innerHTML = "";
+
   for (let i = project_list.project_list.length - 1; i >= display_upto; i--) {
     let hello = document.createElement("div");
-    console.log(i);
     let project = project_list.project_list[i];
-    hello.innerText = `${project.name}`;
-    hello.setAttribute("id", `${i}`);
-    hello.setAttribute("onclick", display_todo(i));
+
+    let displayButton = document.createElement("button");
+    displayButton.innerText = project.name;
+
+    displayButton.addEventListener("click", () => {
+      display_todo(i);
+    });
+
+    let deleteButton = document.createElement("button");
+    deleteButton.innerText = "delete_project";
+
+    deleteButton.addEventListener("click", () => {
+      delete_project_ui(i);
+    });
+
+    hello.appendChild(displayButton);
+    hello.appendChild(deleteButton);
+
     available_projects.appendChild(hello);
   }
 }
@@ -69,16 +84,17 @@ form.addEventListener("submit", function (event) {
 
   // adding project to the project list
   add_projects(projectName);
-  let n; 
+  re_display_ui();
+});
 
+function re_display_ui() {
+  let n;
   // show the latest project on top
-  if (view_all === true)
-  {
+  if (view_all === true) {
     // show the latest project on top by replacing the prev latest project by newly added project for the initial display
-    n = 2
-  }
-  else{
-    n = project_list.project_list.length 
+    n = 2;
+  } else {
+    n = project_list.project_list.length;
   }
   display_projects(n);
-});
+}
