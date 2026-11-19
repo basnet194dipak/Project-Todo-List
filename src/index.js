@@ -13,19 +13,6 @@ add_projects("Learn Machine Learning");
 
 console.log(project_list);
 
-const form = document.getElementById("project-form");
-
-form.addEventListener("submit", function (event) {
-  event.preventDefault();
-
-  const projectName = document.getElementById("project-name").value;
-
-  console.log(projectName);
-
-  // adding project to the project list
-  add_projects(projectName);
-});
-
 // display list of todo from projects
 function display_todo(i) {
   let view = document.querySelector("#view_sections");
@@ -35,9 +22,10 @@ function display_todo(i) {
 }
 
 function display_projects(n) {
+  let display_upto = project_list.project_list.length - n
   let available_projects = document.querySelector("#available_projects");
   available_projects.innerHTML = "";
-  for (let i = n - 1; i >= 0; i--) {
+  for (let i = project_list.project_list.length - 1; i >= display_upto; i--) {
     let hello = document.createElement("div");
     console.log(i);
     let project = project_list.project_list[i];
@@ -50,22 +38,47 @@ function display_projects(n) {
 
 // view all the available projects
 let kid = document.querySelector("#viewallprojects");
-let view_less = true;
+let view_all = true;
 
 kid.addEventListener("click", () => {
-  if (view_less === true) {
+  if (view_all === true) {
     // kid.addEventListener("click", ()=>{display_projects(1)})
-    display_projects(1);
-    kid.innerHTML = `<h2> View all projects</h2>`;
-    view_less = false;
-  } else {
     display_projects(project_list.project_list.length);
     kid.innerHTML = `<h2> View less </h2>`;
-    view_less = true;
+    view_all = false;
+  } else {
+    display_projects(2);
+    kid.innerHTML = `<h2> View all projects</h2>`;
+    view_all = true;
   }
 });
 
 // display the first  project from the project list
 document.addEventListener("DOMContentLoaded", () => {
-  display_projects(1);
+  display_projects(2);
+});
+
+const form = document.getElementById("project-form");
+
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const projectName = document.getElementById("project-name").value;
+
+  console.log(projectName);
+
+  // adding project to the project list
+  add_projects(projectName);
+  let n; 
+
+  // show the latest project on top
+  if (view_all === true)
+  {
+    // show the latest project on top by replacing the prev latest project by newly added project for the initial display
+    n = 2
+  }
+  else{
+    n = project_list.project_list.length 
+  }
+  display_projects(n);
 });
