@@ -10,25 +10,20 @@ import {
   display_projects,
   re_display_ui,
   view_all_projects,
+  view_few,
 } from "./ui_util.js";
-
-// three default projects
-add_projects("Learn Odin project");
-add_projects("Learn Python");
-add_projects("Learn Machine Learning");
 
 console.log(project_list);
 
 function display_todo(project_idx) {}
 
-// display the first  project from the project list
-document.addEventListener("DOMContentLoaded", () => {
-  display_projects(2);
-});
-
 let view_all = true;
+// view only two projects by default;
+view_few(2);
 
+// view all the projects
 view_all_projects(view_all);
+
 const form = document.getElementById("project-form");
 
 form.addEventListener("submit", function (event) {

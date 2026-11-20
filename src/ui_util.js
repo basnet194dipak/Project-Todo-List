@@ -6,6 +6,11 @@ import {
   project_list,
 } from "./util.js";
 
+// three default projects
+add_projects("Learn Odin project");
+add_projects("Learn Python");
+add_projects("Learn Machine Learning");
+
 function delete_project_ui(idx) {
   delete_projects(idx);
   re_display_ui();
@@ -78,4 +83,10 @@ function view_all_projects(view_all) {
   });
 }
 
-export { display_projects, re_display_ui, view_all_projects };
+function view_few(n) {
+  // display the first  project from the project list
+  document.addEventListener("DOMContentLoaded", () => {
+    display_projects(n);
+  });
+}
+export { display_projects, re_display_ui, view_all_projects, view_few };
