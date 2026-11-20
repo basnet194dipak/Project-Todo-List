@@ -6,6 +6,8 @@ import {
   project_list,
 } from "./util.js";
 
+let view_all = true;
+
 // three default projects
 add_projects("Learn Odin project");
 add_projects("Learn Python");
@@ -53,7 +55,7 @@ function display_projects(n) {
   }
 }
 
-function re_display_ui(view_all) {
+function re_display_ui() {
   let n;
   // show the latest project on top
   if (view_all === true) {
@@ -65,7 +67,7 @@ function re_display_ui(view_all) {
   display_projects(n);
 }
 
-function view_all_projects(view_all) {
+function view_all_projects() {
   // view all the available projects
   let kid = document.querySelector("#viewallprojects");
 
@@ -89,4 +91,10 @@ function view_few(n) {
     display_projects(n);
   });
 }
-export { display_projects, re_display_ui, view_all_projects, view_few };
+export {
+  display_projects,
+  re_display_ui,
+  view_all_projects,
+  view_few,
+  project_list,
+};

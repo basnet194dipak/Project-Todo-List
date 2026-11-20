@@ -3,7 +3,7 @@ import {
   delete_projects,
   add_todo,
   delete_todo,
-  project_list,
+  // project_list,
 } from "./util.js";
 
 import {
@@ -11,18 +11,18 @@ import {
   re_display_ui,
   view_all_projects,
   view_few,
+  project_list,
 } from "./ui_util.js";
 
 console.log(project_list);
 
 function display_todo(project_idx) {}
 
-let view_all = true;
 // view only two projects by default;
 view_few(2);
 
 // view all the projects
-view_all_projects(view_all);
+view_all_projects();
 
 const form = document.getElementById("project-form");
 
@@ -35,5 +35,5 @@ form.addEventListener("submit", function (event) {
 
   // adding project to the project list
   add_projects(projectName);
-  re_display_ui(view_all);
+  re_display_ui();
 });
