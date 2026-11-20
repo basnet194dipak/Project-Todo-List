@@ -25,29 +25,36 @@ function display_projects(n) {
   let available_projects = document.querySelector("#available_projects");
 
   available_projects.innerHTML = "";
+  let i = 0;
 
-  for (let i = project_list.project_list.length - 1; i >= display_upto; i--) {
+  let project_dictionary = project_list.project_list;
+  for (const [key, value] of Object.entries(project_dictionary)) {
     let hello = document.createElement("div");
-    let project = project_list.project_list[i];
 
     let displayButton = document.createElement("button");
-    displayButton.innerText = project.name;
+    displayButton.innerText = value.name;
 
     displayButton.addEventListener("click", () => {
-      display_todo(i);
+      display_todo(key);
     });
 
     let deleteButton = document.createElement("button");
     deleteButton.innerText = "delete_project";
 
     deleteButton.addEventListener("click", () => {
-      delete_project_ui(i);
+      delete_project_ui(key);
     });
 
     hello.appendChild(displayButton);
     hello.appendChild(deleteButton);
 
     available_projects.appendChild(hello);
+
+    if (i == n - 1) {
+      break;
+    } else {
+      i++;
+    }
   }
 }
 
