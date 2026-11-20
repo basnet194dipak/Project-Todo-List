@@ -10,6 +10,7 @@ class Project {
   // method_1:add_todo
   add_todo(title, description, dueDate, priority, notes, checklist) {
     var todo = new Todo(
+      this.id,
       title,
       description,
       dueDate,

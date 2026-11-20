@@ -24,7 +24,12 @@ function add_todo(
   checklist,
 ) {
   // access the project and add todo
+
+  console.log("Check todos");
+  console.log(project_idx);
+  // console.log(project_list.project_list[project_idx].name )
   project_list.project_list[project_idx].add_todo(
+    // project_idx,
     title,
     description,
     dueDate,

@@ -14,26 +14,12 @@ import {
   project_list,
 } from "./ui_util.js";
 
-console.log(project_list);
-
-function display_todo(project_idx) {}
+import { project_add, todo_add } from "./fourm_util.js";
 
 // view only two projects by default;
 view_few(2);
 
 // view all the projects
 view_all_projects();
-
-const form = document.getElementById("project-form");
-
-form.addEventListener("submit", function (event) {
-  event.preventDefault();
-
-  const projectName = document.getElementById("project-name").value;
-
-  console.log(projectName);
-
-  // adding project to the project list
-  add_projects(projectName);
-  re_display_ui();
-});
+project_add();
+todo_add();
