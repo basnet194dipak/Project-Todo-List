@@ -1,12 +1,4 @@
 import {
-  add_projects,
-  delete_projects,
-  add_todo,
-  delete_todo,
-  // project_list,
-} from "./util.js";
-
-import {
   display_projects,
   re_display_ui,
   view_all_projects,
@@ -21,5 +13,8 @@ view_few(2);
 
 // view all the projects
 view_all_projects();
+// add and display the projects
 project_add();
+
+// add and view the todo app of respective projects
 todo_add();

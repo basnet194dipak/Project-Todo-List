@@ -8,6 +8,7 @@ import {
 
 let view_all = true;
 let project_id = null;
+let todo_id = null;
 
 // three default projects
 add_projects("Learn Odin project");
@@ -100,7 +101,9 @@ function display_todo_indetail(todo_key) {
 }
 
 function delete_todo_ui(todo_key) {
-  // to be implemented later
+  // get the project id
+  delete_todo(project_id, todo_key);
+  display_todo();
 }
 
 function display_todo() {
@@ -119,6 +122,7 @@ function display_todo() {
     displayButton.innerText = value.title;
 
     displayButton.addEventListener("click", () => {
+      todo_id = key;
       display_todo_indetail(key);
     });
 
@@ -126,7 +130,8 @@ function display_todo() {
     deleteButton.innerText = "delete_todo";
 
     deleteButton.addEventListener("click", () => {
-      delete_todo_ui(key);
+      todo_id = key;
+      delete_todo_ui(todo_id);
     });
 
     hello.appendChild(displayButton);
