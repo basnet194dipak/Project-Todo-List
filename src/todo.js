@@ -3,7 +3,6 @@ import { compareAsc, format } from "date-fns";
 
 class Todo {
   constructor(
-    project_id,
     title,
     description,
     dueDate,
@@ -12,7 +11,6 @@ class Todo {
     checklist = false,
   ) {
     this.id = uuidv4();
-    this.project_id = project_id;
     this.title = title;
     this.description = description;
     // this.dueDate = format(new Date(dueDate), "yyyy-MM-dd");

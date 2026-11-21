@@ -9,8 +9,8 @@ class Project {
 
   // method_1:add_todo
   add_todo(title, description, dueDate, priority, notes, checklist) {
+    console.log("reached here");
     var todo = new Todo(
-      this.id,
       title,
       description,
       dueDate,
@@ -19,6 +19,7 @@ class Project {
       checklist,
     );
     this.todo_list[todo.id] = todo;
+    console.log("Reached here too");
   }
 
   // method_2: delete_todo

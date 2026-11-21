@@ -34,7 +34,7 @@ function display_projects(n) {
 
     displayButton.addEventListener("click", () => {
       project_id = key;
-      console.log(project_id);
+      console.log(project_id, value.name);
       display_todo(key);
     });
 
