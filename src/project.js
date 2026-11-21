@@ -26,6 +26,12 @@ class Project {
   delete_todo(id) {
     delete this.todo_list[id];
   }
+
+  // method_3: gettodo
+
+  get_todo(id) {
+    return this.todo_list[id];
+  }
 }
 
 export { Project };

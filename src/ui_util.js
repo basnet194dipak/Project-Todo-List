@@ -96,8 +96,80 @@ function view_few(n) {
   });
 }
 
-function display_todo_indetail(todo_key) {
-  // to be implemented later
+function display_todo_indetail(project_idx, todo_idx) {
+  let todo = project_list.get_project(project_idx).get_todo(todo_idx);
+  console.log("I am here");
+  let title = todo.title;
+  let description = todo.description;
+  let dueDate = todo.dueDate;
+  let priority = todo.priority;
+  let notes = todo.notes;
+  let checklist = todo.checklist;
+
+  console.log(title, description, dueDate, priority, notes, checklist);
+
+  let view = document.querySelector("#todo_details");
+  view.innerHTML = view.innerHTML = `
+    <div class="todo-header">
+        <button id="back_btn">← Back</button>
+        <h2>${title}</h2>
+        <button id="edit_todo_btn">Edit</button>
+        <button id="delete_todo_btn">Delete</button>
+    </div>
+
+    <section class="todo-section">
+        <div class="section-header">
+            <h3>Title</h3>
+            <button id="edit_title_btn">Edit</button>
+        </div>
+        <p id="todo_title_value">${title}</p>
+    </section>
+
+    <section class="todo-section">
+        <div class="section-header">
+            <h3>Description</h3>
+            <button id="edit_description_btn">Edit</button>
+        </div>
+        <p id="todo_description">${description}</p>
+    </section>
+
+    <section class="todo-section">
+        <div class="section-header">
+            <h3>Due Date</h3>
+            <button id="edit_due_date_btn">Change</button>
+        </div>
+        <p id="todo_due_date">${dueDate || "No due date"}</p>
+    </section>
+
+    <section class="todo-section">
+        <div class="section-header">
+            <h3>Priority</h3>
+            <button id="edit_priority_btn">Change</button>
+        </div>
+        <p id="todo_priority">${priority || "No priority"}</p>
+    </section>
+
+    <section class="todo-section">
+        <div class="section-header">
+            <h3>Notes</h3>
+            <button id="edit_notes_btn">Edit</button>
+        </div>
+        <div id="todo_notes">${notes || "No notes yet."}</div>
+    </section>
+
+    <section class="todo-section">
+        <div class="section-header">
+            <h3>Checklist</h3>
+            <button id="edit_checklist_btn">Edit</button>
+            <button id="add_checklist_item_btn">+ Add Item</button>
+        </div>
+    </section>
+
+    <div class="todo-footer">
+        <button id="mark_complete_btn">Mark as Complete</button>
+        <button id="close_todo_btn">Close</button>
+    </div>
+    `;
 }
 
 function delete_todo_ui(todo_key) {
@@ -123,7 +195,7 @@ function display_todo() {
 
     displayButton.addEventListener("click", () => {
       todo_id = key;
-      display_todo_indetail(key);
+      display_todo_indetail(project_id, todo_id);
     });
 
     let deleteButton = document.createElement("button");
