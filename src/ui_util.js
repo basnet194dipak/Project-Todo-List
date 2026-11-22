@@ -215,12 +215,12 @@ function edit_todo(project_idx, todo_idx) {
 function save_todo(project_idx, todo_idx) {
   let todo = project_list.get_project(project_idx).get_todo(todo_idx);
 
-  todo.title = document.querySelector("#edit_title").value;
-  todo.description = document.querySelector("#edit_description").value;
-  todo.dueDate = document.querySelector("#edit_due_date").value;
-  todo.priority = document.querySelector("#edit_priority").value;
-  todo.notes = document.querySelector("#edit_notes").value;
-  todo.checklist = document.querySelector("#edit_checklist").checked;
+  todo.change_title(document.querySelector("#edit_title").value);
+  todo.change_description(document.querySelector("#edit_description").value);
+  todo.change_dueDate(document.querySelector("#edit_due_date").value);
+  todo.change_priority(document.querySelector("#edit_priority").value);
+  todo.change_note(document.querySelector("#edit_notes").value);
+  todo.update_check_list(document.querySelector("#edit_checklist").checked);
 
   // Display updated todo in read-only mode
   display_todo_indetail(project_idx, todo_idx);

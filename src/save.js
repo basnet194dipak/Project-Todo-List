@@ -1,18 +1,20 @@
-const fs = require("fs");
-const path = require("path");
-
-function load_project(paths) {
-  // load project from the given path
+function storageAvailable(type) {
+  let storage;
+  try {
+    storage = window[type];
+    const x = "__storage_test__";
+    storage.setItem(x, x);
+    storage.removeItem(x);
+    return true;
+  } catch (e) {
+    return (
+      e instanceof DOMException &&
+      e.name === "QuotaExceededError" &&
+      // acknowledge QuotaExceededError only if there's something already stored
+      storage &&
+      storage.length !== 0
+    );
+  }
 }
 
-function write_to_database(project, paths) {
-  // check if path exists
-  // if path doesnt exists then make a json file and write empty object {} or json object {}
-  // write project in json file
-}
-
-function Save(project, paths) {
-  var projects = load_project(paths);
-  projects[project.id] = project;
-  write_to_database(projects);
-}
+export { storageAvailable };
