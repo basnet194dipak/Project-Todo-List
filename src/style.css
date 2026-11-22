@@ -1,0 +1,744 @@
+
+/* =========================================
+   1. GLOBAL RESET & VARIABLES
+========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --primary: #7357E8;
+    --primary-dark: #5B40CC;
+    --primary-light: #EEE9FF;
+
+    --background: #F6F5FB;
+    --surface: #FFFFFF;
+
+    --text-dark: #24223A;
+    --text-medium: #77758D;
+    --text-light: #A5A3B5;
+
+    --border: #EBE9F2;
+
+    --danger: #EF5B68;
+    --danger-light: #FFF0F1;
+
+    --success: #27AE82;
+
+    --shadow: 0 8px 30px rgba(44, 35, 91, 0.06);
+    --shadow-hover: 0 12px 35px rgba(44, 35, 91, 0.11);
+
+    --radius: 16px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--background);
+    color: var(--text-dark);
+    min-height: 100vh;
+    padding: 24px;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 3px solid rgba(115, 87, 232, 0.2);
+    outline-offset: 2px;
+}
+
+
+/* =========================================
+   2. MAIN DASHBOARD LAYOUT
+========================================= */
+
+body {
+    display: grid;
+    grid-template-columns: 290px minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+}
+
+#left {
+    background: var(--surface);
+    min-height: calc(100vh - 48px);
+    border-radius: 22px;
+    padding: 28px 20px;
+    box-shadow: var(--shadow);
+
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    position: sticky;
+    top: 24px;
+}
+
+#right {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+
+/* =========================================
+   3. SIDEBAR BRANDING
+========================================= */
+
+.titles {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.titles > img {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: var(--primary-light);
+    object-fit: contain;
+}
+
+.headings h1 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 23px;
+    font-weight: 800;
+    letter-spacing: -0.8px;
+    color: var(--text-dark);
+    line-height: 1.3;
+}
+
+.headings ul {
+    list-style: none;
+    display: flex;
+    gap: 7px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+}
+
+.headings ul li {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    color: var(--primary);
+    background: var(--primary-light);
+    padding: 5px 8px;
+    border-radius: 6px;
+}
+
+
+/* =========================================
+   4. CREATE PROJECT SECTION
+========================================= */
+
+#create_project {
+    margin-top: 28px;
+}
+
+#project-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#project-name {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    background: #FAFAFD;
+    color: var(--text-dark);
+    font-size: 13px;
+    transition: all 0.2s ease;
+}
+
+#project-name::placeholder {
+    color: var(--text-light);
+}
+
+#project-name:focus {
+    border-color: var(--primary);
+    background: white;
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(115, 87, 232, 0.09);
+}
+
+#project-form button {
+    border: none;
+    background: var(--primary);
+    color: white;
+    border-radius: 11px;
+    padding: 13px;
+    font-weight: 700;
+    font-size: 13px;
+    box-shadow: 0 5px 14px rgba(115, 87, 232, 0.2);
+}
+
+#project-form button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   5. AVAILABLE PROJECTS
+========================================= */
+
+#available_projects {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+#available_projects > div {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px;
+    border-radius: 11px;
+    transition: background 0.2s ease;
+}
+
+#available_projects > div:hover {
+    background: #F7F5FF;
+}
+
+#available_projects button:first-child {
+    flex: 1;
+    min-width: 0;
+    text-align: left;
+    padding: 10px;
+    background: transparent;
+    border: none;
+    color: var(--text-medium);
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 8px;
+}
+
+#available_projects button:first-child:hover {
+    color: var(--primary);
+    background: var(--primary-light);
+}
+
+#available_projects button:last-child {
+    border: none;
+    background: transparent;
+    color: var(--text-light);
+    font-size: 10px;
+    padding: 8px;
+    border-radius: 7px;
+}
+
+#available_projects button:last-child:hover {
+    color: var(--danger);
+    background: var(--danger-light);
+}
+
+
+/* =========================================
+   6. VIEW ALL PROJECTS
+========================================= */
+
+#view_all_projects {
+    margin-top: auto;
+}
+
+#viewallprojects {
+    width: 100%;
+    border: 1px solid var(--border);
+    background: white;
+    padding: 13px;
+    border-radius: 11px;
+    color: var(--primary);
+    transition: all 0.2s ease;
+}
+
+#viewallprojects h2 {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+#viewallprojects:hover {
+    border-color: var(--primary);
+    background: var(--primary-light);
+}
+
+
+/* =========================================
+   7. RIGHT WORKSPACE / SEARCH
+========================================= */
+
+.search {
+    min-height: 20px;
+}
+
+
+/* =========================================
+   8. VISUALS LAYOUT
+========================================= */
+
+#visuals {
+    display: grid;
+    grid-template-columns: minmax(300px, 0.9fr) minmax(0, 1.1fr);
+    gap: 22px;
+    align-items: start;
+}
+
+#todo {
+    background: var(--surface);
+    padding: 26px;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    min-width: 0;
+}
+
+#control_section h2 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 25px;
+}
+
+
+/* =========================================
+   9. TODO FORM
+========================================= */
+
+#todo-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#todo-form label {
+    color: var(--text-dark);
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+#todo-form input[type="text"],
+#todo-form input[type="date"],
+#todo-form textarea,
+#todo-form select {
+    width: 100%;
+    border: 1px solid var(--border);
+    background: #FAFAFD;
+    color: var(--text-dark);
+    border-radius: 10px;
+    padding: 12px 13px;
+    font-size: 13px;
+    margin-bottom: 19px;
+    transition: all 0.2s ease;
+}
+
+#todo-form textarea {
+    resize: vertical;
+    min-height: 95px;
+    line-height: 1.6;
+}
+
+#todo-form input:focus,
+#todo-form textarea:focus,
+#todo-form select:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: white;
+    box-shadow: 0 0 0 4px rgba(115, 87, 232, 0.08);
+}
+
+#todo-form input::placeholder,
+#todo-form textarea::placeholder {
+    color: var(--text-light);
+}
+
+#todo-form select {
+    cursor: pointer;
+}
+
+/* Checklist checkbox */
+
+#todo-form label:has(input[type="checkbox"]) {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 20px;
+    cursor: pointer;
+    color: var(--text-medium);
+}
+
+#todo-form input[type="checkbox"] {
+    width: 17px;
+    height: 17px;
+    accent-color: var(--primary);
+    cursor: pointer;
+}
+
+/* Create Todo button */
+
+#todo-form button {
+    border: none;
+    background: var(--primary);
+    color: white;
+    padding: 14px;
+    border-radius: 11px;
+    font-size: 13px;
+    font-weight: 700;
+    box-shadow: 0 5px 14px rgba(115, 87, 232, 0.2);
+}
+
+#todo-form button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   10. TODO LIST
+========================================= */
+
+#view_sections {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    margin-top: 25px;
+}
+
+#view_sections > div {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    background: #FAFAFD;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 9px;
+    transition: all 0.2s ease;
+}
+
+#view_sections > div:hover {
+    border-color: #D5CBFF;
+    background: #F8F6FF;
+    transform: translateY(-2px);
+}
+
+#view_sections button:first-child {
+    flex: 1;
+    min-width: 0;
+    text-align: left;
+    background: transparent;
+    border: none;
+    color: var(--text-dark);
+    padding: 9px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+#view_sections button:last-child {
+    border: none;
+    background: var(--danger-light);
+    color: var(--danger);
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+#view_sections button:last-child:hover {
+    background: var(--danger);
+    color: white;
+}
+
+
+/* =========================================
+   11. TODO DETAILS PANEL
+========================================= */
+
+#todo_details {
+    background: var(--surface);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: var(--shadow);
+    min-width: 0;
+    min-height: 250px;
+}
+
+.todo-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+}
+
+.todo-header h2 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    flex: 1;
+    min-width: 100px;
+}
+
+.todo-header button,
+.section-header button,
+.todo-footer button {
+    border: none;
+    padding: 9px 13px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+#back_btn {
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+#edit_todo_btn,
+#edit_title_btn,
+#edit_description_btn,
+#edit_due_date_btn,
+#edit_priority_btn,
+#edit_notes_btn,
+#edit_checklist_btn {
+    background: #F0EDFF;
+    color: var(--primary);
+}
+
+#delete_todo_btn {
+    background: var(--danger-light);
+    color: var(--danger);
+}
+
+.todo-header button:hover,
+.section-header button:hover {
+    filter: brightness(0.95);
+    transform: translateY(-1px);
+}
+
+
+/* =========================================
+   12. TODO DETAIL SECTIONS
+========================================= */
+
+.todo-section {
+    padding: 17px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.section-header h3 {
+    flex: 1;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.todo-section p,
+#todo_notes {
+    color: var(--text-medium);
+    font-size: 13px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+#add_checklist_item_btn {
+    background: #E9F8F2;
+    color: var(--success);
+}
+
+
+/* =========================================
+   13. TODO FOOTER
+========================================= */
+
+.todo-footer {
+    display: flex;
+    gap: 10px;
+    margin-top: 22px;
+    flex-wrap: wrap;
+}
+
+#mark_complete_btn {
+    background: var(--success);
+    color: white;
+}
+
+#close_todo_btn {
+    background: #F0EFF5;
+    color: var(--text-medium);
+}
+
+.todo-footer button:hover {
+    transform: translateY(-2px);
+    filter: brightness(0.95);
+}
+
+
+/* =========================================
+   14. SCROLLBAR
+========================================= */
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #D8D3EA;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}
+
+
+/* =========================================
+   15. RESPONSIVE DESIGN
+========================================= */
+
+/* Tablets */
+
+@media (max-width: 1050px) {
+
+    body {
+        grid-template-columns: 240px minmax(0, 1fr);
+        padding: 16px;
+        gap: 16px;
+    }
+
+    #visuals {
+        grid-template-columns: 1fr;
+    }
+
+    #left {
+        padding: 22px 15px;
+    }
+
+    #todo {
+        padding: 22px;
+    }
+}
+
+
+/* Mobile devices */
+
+@media (max-width: 650px) {
+
+    body {
+        display: flex;
+        flex-direction: column;
+        padding: 12px;
+        gap: 15px;
+    }
+
+    #left {
+        width: 100%;
+        min-height: auto;
+        position: static;
+        padding: 20px;
+        border-radius: 17px;
+        gap: 18px;
+    }
+
+    #creating_project {
+        width: 100%;
+    }
+
+    #create_project {
+        margin-top: 18px;
+    }
+
+    #available_projects {
+        max-height: 180px;
+        overflow-y: auto;
+    }
+
+    #view_all_projects {
+        margin-top: 0;
+    }
+
+    #right {
+        width: 100%;
+    }
+
+    #visuals {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    #todo,
+    #todo_details {
+        padding: 19px;
+        border-radius: 16px;
+    }
+
+    .headings h1 {
+        font-size: 21px;
+    }
+
+    #control_section h2 {
+        font-size: 20px;
+    }
+
+    .todo-header h2 {
+        font-size: 17px;
+    }
+
+}
+
+/* Small phones */
+
+@media (max-width: 380px) {
+
+    body {
+        padding: 8px;
+    }
+
+    #todo,
+    #todo_details {
+        padding: 15px;
+    }
+
+    .todo-header {
+        gap: 7px;
+    }
+
+    .todo-header button {
+        padding: 8px;
+        font-size: 10px;
+    }
+
+}

@@ -1,3 +1,4 @@
+import "./style.css"
 import {
   display_projects,
   re_display_ui,

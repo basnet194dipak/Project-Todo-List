@@ -98,7 +98,7 @@ function view_few(n) {
 
 function display_todo_indetail(project_idx, todo_idx) {
   let todo = project_list.get_project(project_idx).get_todo(todo_idx);
-  console.log("I am here");
+
   let title = todo.title;
   let description = todo.description;
   let dueDate = todo.dueDate;
@@ -106,70 +106,129 @@ function display_todo_indetail(project_idx, todo_idx) {
   let notes = todo.notes;
   let checklist = todo.checklist;
 
-  console.log(title, description, dueDate, priority, notes, checklist);
+  let status = checklist ? "Completed" : "Incomplete";
 
   let view = document.querySelector("#todo_details");
-  view.innerHTML = view.innerHTML = `
+
+  view.innerHTML = `
     <div class="todo-header">
         <button id="back_btn">← Back</button>
         <h2>${title}</h2>
         <button id="edit_todo_btn">Edit</button>
-        <button id="delete_todo_btn">Delete</button>
     </div>
 
     <section class="todo-section">
-        <div class="section-header">
-            <h3>Title</h3>
-            <button id="edit_title_btn">Edit</button>
-        </div>
-        <p id="todo_title_value">${title}</p>
+        <h3>Title</h3>
+        <p>${title}</p>
     </section>
 
     <section class="todo-section">
-        <div class="section-header">
-            <h3>Description</h3>
-            <button id="edit_description_btn">Edit</button>
-        </div>
-        <p id="todo_description">${description}</p>
+        <h3>Description</h3>
+        <p>${description}</p>
     </section>
 
     <section class="todo-section">
-        <div class="section-header">
-            <h3>Due Date</h3>
-            <button id="edit_due_date_btn">Change</button>
-        </div>
-        <p id="todo_due_date">${dueDate || "No due date"}</p>
+        <h3>Due Date</h3>
+        <p>${dueDate || "No due date"}</p>
     </section>
 
     <section class="todo-section">
-        <div class="section-header">
-            <h3>Priority</h3>
-            <button id="edit_priority_btn">Change</button>
-        </div>
-        <p id="todo_priority">${priority || "No priority"}</p>
+        <h3>Priority</h3>
+        <p>${priority || "No priority"}</p>
     </section>
 
     <section class="todo-section">
-        <div class="section-header">
-            <h3>Notes</h3>
-            <button id="edit_notes_btn">Edit</button>
-        </div>
-        <div id="todo_notes">${notes || "No notes yet."}</div>
-    </section>
-
-    <section class="todo-section">
-        <div class="section-header">
-            <h3>Checklist</h3>
-            <button id="edit_checklist_btn">Edit</button>
-            <button id="add_checklist_item_btn">+ Add Item</button>
-        </div>
+        <h3>Notes</h3>
+        <div>${notes || "No notes yet."}</div>
     </section>
 
     <div class="todo-footer">
-        <button id="mark_complete_btn">Mark as Complete</button>
-        <button id="close_todo_btn">Close</button>
+        <h3>Status: ${status}</h3>
     </div>
-    `;
+  `;
+
+  document.querySelector("#edit_todo_btn").addEventListener("click", () => {
+    edit_todo(project_idx, todo_idx);
+  });
+}
+
+
+function edit_todo(project_idx, todo_idx) {
+  let todo = project_list.get_project(project_idx).get_todo(todo_idx);
+
+  let view = document.querySelector("#todo_details");
+
+  view.innerHTML = `
+    <div class="todo-header">
+        <button id="cancel_btn">← Cancel</button>
+        <h2>Edit Todo</h2>
+    </div>
+
+    <section class="todo-section">
+        <h3>Title</h3>
+        <input type="text" id="edit_title" value="${todo.title}">
+    </section>
+
+    <section class="todo-section">
+        <h3>Description</h3>
+        <textarea id="edit_description">${todo.description}</textarea>
+    </section>
+
+    <section class="todo-section">
+        <h3>Due Date</h3>
+        <input type="date" id="edit_due_date" value="${todo.dueDate || ""}">
+    </section>
+
+    <section class="todo-section">
+        <h3>Priority</h3>
+        <select id="edit_priority">
+            <option value="Low" ${todo.priority === "Low" ? "selected" : ""}>Low</option>
+            <option value="Medium" ${todo.priority === "Medium" ? "selected" : ""}>Medium</option>
+            <option value="High" ${todo.priority === "High" ? "selected" : ""}>High</option>
+        </select>
+    </section>
+
+    <section class="todo-section">
+        <h3>Notes</h3>
+        <textarea id="edit_notes">${todo.notes || ""}</textarea>
+    </section>
+
+    <section>
+        <label>
+            <input type="checkbox" id="edit_checklist"
+                ${todo.checklist ? "checked" : ""}>
+            Completed
+        </label>
+    </section>
+
+    <button id="save_todo_btn">Save</button>
+  `;
+
+  document.querySelector("#save_todo_btn").addEventListener("click", () => {
+    save_todo(project_idx, todo_idx);
+  });
+
+  document.querySelector("#cancel_btn").addEventListener("click", () => {
+    display_todo_indetail(project_idx, todo_idx);
+  });
+}
+
+
+function save_todo(project_idx, todo_idx) {
+  let todo = project_list.get_project(project_idx).get_todo(todo_idx);
+
+  todo.title = document.querySelector("#edit_title").value;
+  todo.description = document.querySelector("#edit_description").value;
+  todo.dueDate = document.querySelector("#edit_due_date").value;
+  todo.priority = document.querySelector("#edit_priority").value;
+  todo.notes = document.querySelector("#edit_notes").value;
+  todo.checklist = document.querySelector("#edit_checklist").checked;
+
+  // Display updated todo in read-only mode
+  display_todo_indetail(project_idx, todo_idx);
+
+  // Also refresh the todo list
+  display_todo();
 }
 
 function delete_todo_ui(todo_key) {
