@@ -152,7 +152,6 @@ function display_todo_indetail(project_idx, todo_idx) {
   });
 }
 
-
 function edit_todo(project_idx, todo_idx) {
   let todo = project_list.get_project(project_idx).get_todo(todo_idx);
 
@@ -212,7 +211,6 @@ function edit_todo(project_idx, todo_idx) {
     display_todo_indetail(project_idx, todo_idx);
   });
 }
-
 
 function save_todo(project_idx, todo_idx) {
   let todo = project_list.get_project(project_idx).get_todo(todo_idx);
