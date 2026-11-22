@@ -1,7 +1,13 @@
 import { Project } from "./project";
 import { Project_list } from "./project_list";
+import { save_data, load_data } from "./save.js";
 
-let project_list = new Project_list();
+let project = new Project_list();
+// initially_save empty project_list to localStorage
+save_data(project);
+
+// load project_list from localStorage if available
+let project_list = load_data();
 
 // add project to project_list
 function add_projects(project_name) {
